@@ -1,0 +1,184 @@
+@import 'tailwindcss';
+@import '@fontsource/ibm-plex-sans/latin-400.css';
+@import '@fontsource/ibm-plex-sans/latin-500.css';
+@import '@fontsource/ibm-plex-sans/latin-600.css';
+@import '@fontsource/ibm-plex-mono/latin-400.css';
+@import '@fontsource/ibm-plex-mono/latin-500.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Base palette */
+  --color-paper: #f5f7f9;
+  --color-surface: #ffffff;
+  --color-ink: #16202e;
+  --color-ink-muted: #4b5563;
+  --color-ink-faint: #8a94a6;
+  --color-line: #dde3ea;
+  --color-line-strong: #c3ccd8;
+
+  --color-fiber-50: #e9f5f8;
+  --color-fiber-100: #cfe9ef;
+  --color-fiber-500: #0b6e8a;
+  --color-fiber-600: #095c73;
+  --color-fiber-300: #4fb5cf;
+
+  --color-cable-100: #fbf0d2;
+  --color-cable-500: #d9a21b;
+  --color-cable-700: #9a6f0a;
+
+  --color-ok: #1f8a4c;
+  --color-ok-soft: #e3f4ea;
+  --color-warn: #b25e09;
+  --color-warn-soft: #fcefdf;
+  --color-danger: #b42318;
+  --color-danger-soft: #fbe9e7;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --shadow-float: 0 1px 2px rgba(22, 32, 46, 0.06), 0 8px 24px -12px rgba(22, 32, 46, 0.18);
+}
+
+/* Semantic tokens that swap in dark mode */
+:root {
+  --bg: var(--color-paper);
+  --bg-elev: var(--color-surface);
+  --bg-sunken: #eef2f6;
+  --fg: var(--color-ink);
+  --fg-muted: var(--color-ink-muted);
+  --fg-faint: var(--color-ink-faint);
+  --border: var(--color-line);
+  --border-strong: var(--color-line-strong);
+  --accent: var(--color-fiber-500);
+  --accent-strong: var(--color-fiber-600);
+  --accent-soft: var(--color-fiber-50);
+  --accent-ring: var(--color-fiber-300);
+  --cable: var(--color-cable-500);
+  --cable-soft: var(--color-cable-100);
+  --cable-strong: var(--color-cable-700);
+  --code-bg: #0f1620;
+  --code-fg: #e6eaf0;
+}
+
+.dark {
+  --bg: #0f1620;
+  --bg-elev: #16202e;
+  --bg-sunken: #0b111a;
+  --fg: #e6eaf0;
+  --fg-muted: #aab4c3;
+  --fg-faint: #717c8d;
+  --border: #243043;
+  --border-strong: #324059;
+  --accent: #4fb5cf;
+  --accent-strong: #7fd0e3;
+  --accent-soft: #10303c;
+  --accent-ring: #4fb5cf;
+  --cable: #e6b43b;
+  --cable-soft: #3a2e0f;
+  --cable-strong: #f0cc6e;
+  --code-bg: #0b111a;
+  --code-fg: #e6eaf0;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elev: var(--bg-elev);
+  --color-bg-sunken: var(--bg-sunken);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-faint: var(--fg-faint);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ring: var(--accent-ring);
+  --color-cable: var(--cable);
+  --color-cable-soft: var(--cable-soft);
+  --color-cable-strong: var(--cable-strong);
+  --color-code-bg: var(--code-bg);
+  --color-code-fg: var(--code-fg);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-bg text-fg font-sans antialiased;
+    font-feature-settings: 'cv02', 'ss01';
+    line-height: 1.6;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .prose-doc {
+    @apply text-[0.975rem] leading-7 text-fg;
+  }
+  .prose-doc p + p {
+    @apply mt-4;
+  }
+  .prose-doc strong {
+    @apply font-semibold text-fg;
+  }
+  .prose-doc code {
+    @apply rounded-sm bg-bg-sunken px-1.5 py-0.5 font-mono text-[0.85em] text-fg;
+  }
+  .prose-doc ul {
+    @apply my-4 list-disc space-y-2 pl-6;
+  }
+  .prose-doc ol {
+    @apply my-4 list-decimal space-y-2 pl-6;
+  }
+  .prose-doc a {
+    @apply text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent;
+  }
+}
+
+/* Dashed "signal" travelling along the LAN cable in the topology diagram */
+@keyframes cable-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.cable-flow {
+  stroke-dasharray: 6 6;
+  animation: cable-flow 1.6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cable-flow {
+    animation: none;
+  }
+}
