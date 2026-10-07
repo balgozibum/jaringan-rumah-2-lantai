@@ -49,4 +49,4 @@ Situs memakai `BrowserRouter`, sehingga host harus mengarahkan semua path ke `in
 
 - Vercel: `vercel.json` sudah berisi rewrite.
 - Netlify: `public/_redirects` sudah berisi aturan `/* /index.html 200`.
-- GitHub Pages: skrip `postbuild` menyalin `index.html` menjadi `404.html`. Jika situs tidak berada di root domain, set `base` di `vite.config.ts` sesuai nama repositori.
+- GitHub Pages: jalankan `npm run deploy`. Skrip membangun dengan `VITE_BASE=/<nama-repo>/`, menyalin `index.html` menjadi `404.html`, dan mendorong `dist/` ke branch `gh-pages`.
