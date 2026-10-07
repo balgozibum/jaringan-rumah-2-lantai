@@ -1,0 +1,1 @@
+import{i as e,n as t}from"./jsx-runtime-Dwa4jgYK.js";var n=e(t(),1),r=`Jaringan Rumah 2 Lantai`;function i(e){(0,n.useEffect)(()=>{document.title=e?`${e} · ${r}`:r},[e])}export{i as t};
